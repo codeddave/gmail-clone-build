@@ -5,14 +5,43 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     cursor: pointer;
-    border: 1px solid black;
-    width: 30%;
     color: gray;
-    &:hover {
-        color: red;
+  .sidebar-option-title {
+      flex: 1;
+        font-size: 14px !important;
+        margin-left: 10px;
     }
+    .sidebar-option-icon {
+        padding: 5px !important;
+    }
+ 
     p {
         display: none;
         font-weight: 300;
+    }
+    
+   
+    &:hover, &:hover h3, &:hover p  {
+        background-color: #fcecec;
+        color: #c04b37;
+        font-weight: 800 !important;
+    }
+    &:hover p {
+        display: block;
+    }
+}
+
+.sidebar-option-active {
+    background-color: #fcecec;
+    color: #c04b37;
+    font-weight: 800 !important;
+    p {
+        display: inline;
+    font-weight: 800 !important;
+
+    }
+    h3 {
+    font-weight: 800 !important;
+
     }
 }

@@ -10,8 +10,10 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import InboxIcon from "@material-ui/icons/Inbox";
 import PeopleIcon from "@material-ui/icons/People";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-import "./EmailList.scss";
 import Section from "../Section/Section";
+import EmailRow from "../EmailRow/EmailRow";
+import "./EmailList.scss";
+
 function EmailList() {
   return (
     <div className="email-list">
@@ -48,7 +50,38 @@ function EmailList() {
         <Section Icon={PeopleIcon} title="Social" color="#1A73E8" />
         <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
       </div>
-      <h1>Hello from email list </h1>
+      <div className="email-list">
+        <EmailRow
+          titie="Twitch"
+          subject="Hey there, fellow streamer!!!"
+          description="This is a test This is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a test This is a testThis is a testThis is a testThis is a testThis is a testThis is a test"
+          time="10pm"
+        />
+        <EmailRow
+          titie="Twitch"
+          subject="Hey there, fellow streamer!!!"
+          description="This is a test"
+          time="10pm"
+        />
+        <EmailRow
+          titie="Twitch"
+          subject="Hey there, fellow streamer!!!"
+          description="This is a test"
+          time="10pm"
+        />
+        <EmailRow
+          titie="Twitch"
+          subject="Hey there, fellow streamer!!!"
+          description="This is a test"
+          time="10pm"
+        />
+        <EmailRow
+          titie="Twitch"
+          subject="Hey there, fellow streamer!!!"
+          description="This is a test"
+          time="10pm"
+        />
+      </div>
     </div>
   );
 }

@@ -7,7 +7,24 @@
     height: 40%;
     max-width: 500px;
     border-radius: 5px;
-    padding: 15px;
+    border: 0.1px solid black;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        input {
+            padding: 10px;
+            height: 30px;
+            border: none;
+            border-bottom: 2px solid whitesmoke;
+            outline: none;
+        }
+        .send-mail-message {
+            height: 130px !important;
+            
+        }
+    }
 }
 
 .send-mail-header {
@@ -15,6 +32,7 @@
     justify-content: space-between;
     color: gray;
     align-items: center;
+    padding: 15px;
     h3 {
         color: whitesmoke;
         font-size: 13px;

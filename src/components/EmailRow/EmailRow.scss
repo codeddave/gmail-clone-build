@@ -15,6 +15,7 @@
 .email-row-options {
     display: flex;
 }
+
 .email-row-message {
     
      display: flex;
@@ -29,4 +30,19 @@
     white-space: nowrap;
 }
 
+}
+
+.email-row-title {
+    font-size: 13px;
+    //flex: 0.3;
+}
+.email-row-description {
+    color: gray;
+    font-weight: 400;
+}
+
+.email-row-time {
+    font-weight: bold;
+    padding-right: 15px;
+    font-size: 9px;
 }

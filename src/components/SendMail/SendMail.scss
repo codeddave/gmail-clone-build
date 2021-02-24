@@ -1,0 +1,31 @@
+.send-mail {
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+    background-color: #404040;
+    width: 40%;
+    height: 40%;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.send-mail-header {
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+    align-items: center;
+    h3 {
+        color: whitesmoke;
+        font-size: 13px;
+    }
+    //border-bottom: 1px solid whitesmoke;
+}
+.send-mail-close {
+    cursor: pointer;
+}
+.send-mail-send {
+background-color: #3079ed !important;
+text-transform: capitalize !important;
+margin: 15px !important;
+}

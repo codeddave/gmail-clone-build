@@ -1,5 +1,9 @@
 import { mailActionTypes } from "./mailActionTypes";
 
-export const setMessageOpen = () => ({
-  type: mailActionTypes.SET_MESSAGE_OPEN,
+export const setIsMessageOpen = () => ({
+  type: mailActionTypes.SET_SEND_MESSAGE_OPEN,
+});
+
+export const closeSendMessage = () => ({
+  type: mailActionTypes.CLOSE_SEND_MESSAGE,
 });

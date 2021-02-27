@@ -13,10 +13,17 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PersonIcon from "@material-ui/icons/Person";
 import DuoIcon from "@material-ui/icons/Duo";
 import PhoneIcon from "@material-ui/icons/Phone";
-function Sidebar() {
+import { connect } from "react-redux";
+import { setIsMessageOpen } from "../../redux/mail/mailActions";
+
+function Sidebar({ setIsMessageOpen }) {
   return (
     <div className="sidebar">
-      <Button startIcon={<AddIcon />} className="sidebar-compose">
+      <Button
+        startIcon={<AddIcon />}
+        className="sidebar-compose"
+        onClick={setIsMessageOpen}
+      >
         compose
       </Button>
       <SidebarOption
@@ -49,4 +56,7 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+const mapDispatchToProps = (dispatch) => ({
+  setIsMessageOpen: () => dispatch(setIsMessageOpen()),
+});
+export default connect(null, mapDispatchToProps)(Sidebar);

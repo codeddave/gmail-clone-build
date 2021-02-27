@@ -5,12 +5,16 @@ const INITIAL_STATE = {
 };
 const mailReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case mailActionTypes.SET_MESSAGE_OPEN:
+    case mailActionTypes.SET_SEND_MESSAGE_OPEN:
       return {
         ...state,
-        isMessageOpen: !isMessageOpen,
+        isMessageOpen: !state.isMessageOpen,
       };
-
+    case mailActionTypes.CLOSE_SEND_MESSAGE:
+      return {
+        ...state,
+        isMessageOpen: false,
+      };
     default:
       return state;
   }

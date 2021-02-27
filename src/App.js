@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import "./App.css";
 import EmailList from "./components/EmailList/EmailList";
 import Header from "./components/Header/Header";
@@ -6,7 +7,7 @@ import Mail from "./components/Mail/Mail";
 import SendMail from "./components/SendMail/SendMail";
 import Sidebar from "./components/Sidebar/Sidebar";
 
-function App() {
+function App({ isMessageOpen }) {
   return (
     <Router>
       <div className="app">
@@ -19,10 +20,12 @@ function App() {
             <Route exact path="/mail" component={Mail} />
           </Switch>
         </div>
-        <SendMail />
+        {isMessageOpen && <SendMail />}
       </div>
     </Router>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => ({
+  isMessageOpen: state.mail.isMessageOpen,
+});
+export default connect(mapStateToProps)(App);

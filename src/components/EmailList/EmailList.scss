@@ -2,8 +2,19 @@
     overflow: scroll;
     flex: 1;
     padding-bottom: 30px;
+    height: 100vh;
 }
 
+//HIde scrollbar in Safari, Chrome, Opera 
+.email-list::-webkit-scrollbar {
+  display: none;
+}
+
+//Hide scrollbars in IE, Edge and Firefox
+.email-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 .email-list-settings {
     position: sticky; 
     top: 0;
@@ -20,5 +31,10 @@
     top: 0;
     display: flex;
     border-bottom: 1px solid whitesmoke;
+    z-index: 999;
 
+
+}
+.email-list-list {
+    padding-bottom: 20%;
 }

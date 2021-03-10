@@ -10,9 +10,8 @@ import firebase from "../../firebase";
 function SendMail({ closeSendMessage }) {
   const dispatch = useDispatch();
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (formData) => {
-    console.log(formData);
-    firestore.collection("emails").add({
+  const onSubmit = async (formData) => {
+    await firestore.collection("emails").add({
       to: formData.to,
       subject: formData.subject,
       message: formData.message,

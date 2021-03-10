@@ -15,15 +15,42 @@ import EmailRow from "../EmailRow/EmailRow";
 import "./EmailList.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { fetchEmailsStartAsync } from "../../redux/mail/mailActions";
+import { selectEmails } from "../../redux/mail/mailSelectors";
 
-function EmailList({ emails }) {
+function EmailList() {
   const isLoading = useSelector((state) => state.mail.loading);
   const dispatch = useDispatch();
+  const emai = useSelector(selectEmails);
+  const emails = [...new Set(emai)];
 
   useEffect(() => {
     dispatch(fetchEmailsStartAsync());
-  }, []);
+  }, [dispatch]);
 
+  const renderEmails = () => {
+    if (isLoading) {
+      return <h1>loading</h1>;
+    } else {
+      return (
+        <div className="email-list-list">
+          {emails.map(
+            ({ id, data: { subject, timestamp, to, message } }, index) => {
+              return (
+                <EmailRow
+                  key={index}
+                  id={id}
+                  title={to}
+                  subject={subject}
+                  description={message}
+                  time={new Date(timestamp?.seconds * 1000).toUTCString()}
+                />
+              );
+            }
+          )}
+        </div>
+      );
+    }
+  };
   return (
     <div className="email-list">
       <div className="email-list-settings">
@@ -59,28 +86,10 @@ function EmailList({ emails }) {
         <Section Icon={PeopleIcon} title="Social" color="#1A73E8" />
         <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
       </div>
-      {!isLoading && emails ? (
-        <div className="email-list">
-          {emails.map(({ id, data: { subject, timestamp, to, message } }) => {
-            return (
-              <EmailRow
-                key={id}
-                title={to}
-                subject={subject}
-                description={message}
-                time={new Date(timestamp?.seconds * 1000).toUTCString()}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <h1>Loading</h1>
-      )}
+
+      {renderEmails()}
     </div>
   );
 }
-const mapStateToProps = (state) => ({
-  emails: state.mail.emails,
-});
 
-export default connect(mapStateToProps)(EmailList);
+export default EmailList;

@@ -16,28 +16,39 @@ export const fetchEmailsSuccess = (emails) => ({
   type: mailActionTypes.FETCH_EMAILS_SUCCESS,
   payload: emails,
 });
-export const fetchEmailsFailure = () => ({
+export const fetchEmailsFailure = (error) => ({
   type: mailActionTypes.FETCH_EMAILS_FAILURE,
+  payload: error,
 });
 
 export const getEmailbyId = (id) => ({
   type: mailActionTypes.FETCH_EMAIL_BY_ID,
   payload: id,
 });
-
+export const selectMail = (mail) => ({
+  type: mailActionTypes.SELECT_MAIL,
+  payload: mail,
+});
+export const addEmailMessage = (message) => ({
+  type: mailActionTypes.addEmailMessage,
+  payload: message,
+});
 export const fetchEmailsStartAsync = () => {
-  return (dispatch) => {
+  let emails = [];
+
+  return async (dispatch) => {
     const emailsRef = firestore.collection("emails");
     dispatch(fetchEmailsStart());
-    let emails = [];
-    emailsRef.orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-      snapshot.docs.map((doc) => {
-        const data = doc.data();
-
-        emails.push({ id: doc.id, data });
-        console.log(emails);
+    try {
+      await emailsRef.orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+        snapshot.docs.map((doc) => {
+          emails.push({ id: doc.id, data: doc.data() });
+          console.log(emails);
+        });
+        dispatch(fetchEmailsSuccess(emails));
       });
-    });
-    dispatch(fetchEmailsSuccess(emails));
+    } catch (error) {
+      dispatch(fetchEmailsFailure(error.message));
+    }
   };
 };

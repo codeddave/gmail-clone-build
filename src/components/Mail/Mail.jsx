@@ -15,9 +15,13 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import "./Mail.scss";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Mail() {
   const history = useHistory();
+  const { id, title, subject, description, time } = useSelector(
+    (state) => state.mail.selectedMail
+  );
   return (
     <div className="mail">
       <div className="mail-tools">
@@ -65,13 +69,13 @@ function Mail() {
       </div>
       <div className="mail-body">
         <div className="mail-body-header">
-          <h2>Subject</h2>
+          <h2>{subject}</h2>
           <LabelImportantIcon className="mail-important" />
-          <p>title</p>
-          <p className="mail-time">10pm</p>
+          <p>{title}</p>
+          <p className="mail-time">{time}</p>
         </div>
         <div className="mail-message">
-          <p>This is a message </p>
+          <p>{description} </p>
         </div>
       </div>
     </div>

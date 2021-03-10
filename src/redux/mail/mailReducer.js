@@ -3,7 +3,8 @@ import { mailActionTypes } from "./mailActionTypes";
 const INITIAL_STATE = {
   loading: false,
   isMessageOpen: false,
-  emails: null,
+  emails: [],
+  selectedMail: null,
 };
 const mailReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -25,8 +26,19 @@ const mailReducer = (state = INITIAL_STATE, action) => {
     case mailActionTypes.FETCH_EMAILS_SUCCESS:
       return {
         ...state,
-        loading: false,
         emails: action.payload,
+        loading: false,
+      };
+    case mailActionTypes.ADD_MESSAGE:
+      return {
+        ...state,
+        emails: [...state.emails, action.payload],
+        loading: false,
+      };
+    case mailActionTypes.SELECT_MAIL:
+      return {
+        ...state,
+        selectedMail: action.payload,
       };
     default:
       return state;

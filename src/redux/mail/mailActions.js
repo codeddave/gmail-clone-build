@@ -43,7 +43,6 @@ export const fetchEmailsStartAsync = () => {
       await emailsRef.orderBy("timestamp", "desc").onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
           emails.push({ id: doc.id, data: doc.data() });
-          console.log(emails);
         });
         dispatch(fetchEmailsSuccess(emails));
       });

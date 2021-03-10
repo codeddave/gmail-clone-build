@@ -1,12 +1,16 @@
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import "./Header.scss";
-import { Avatar, IconButton } from "@material-ui/core";
+import { Avatar, Button, IconButton } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { auth } from "../../firebase";
+import { useSelector } from "react-redux";
 function Header() {
+  const { photoURL } = useSelector((state) => state.user.currentUser);
+
   return (
     <div className="header">
       <div className="header-left">
@@ -30,7 +34,8 @@ function Header() {
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <Avatar />
+        <Avatar src={photoURL} />
+        <Button onClick={() => auth.signOut()}> sign out </Button>
       </div>
     </div>
   );
